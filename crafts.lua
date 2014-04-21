@@ -1,3 +1,11 @@
+-- Boilerplate to support localized strings if intllib mod is installed.
+local S
+if intllib then
+	S = intllib.Getter()
+else
+	S = function(s) return s end
+end
+
 -- Crafting recipes for pipes
 
 minetest.register_craft( {
@@ -88,12 +96,12 @@ minetest.register_craft( {
 if minetest.get_modpath("homedecor") == nil then
 
 	minetest.register_craftitem(":homedecor:plastic_sheeting", {
-		description = "Plastic sheet",
+		description = S("Plastic sheet"),
 		inventory_image = "homedecor_plastic_sheeting.png",
 	})
 
 	minetest.register_craftitem(":homedecor:plastic_base", {
-		description = "Unprocessed Plastic base",
+		description = S("Unprocessed Plastic base"),
 		wield_image = "homedecor_plastic_base.png",
 		inventory_image = "homedecor_plastic_base_inv.png",
 	})
