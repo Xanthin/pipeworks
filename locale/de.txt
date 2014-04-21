@@ -1,0 +1,70 @@
+# Translation by Xanthin
+
+### autocrafter.lua ###
+Autocrafter = Fertigungsautomat
+
+### crafts.lua ###
+Plastic sheet = Kunststoffplatte
+Unprocessed Plastic base = Unverarbeitetes Plastik
+
+### deployer.lua ###
+Deployer = Platzierer
+
+### devices.lua ###
+Pump/Intake Module = Pumpe/Aufnahmemodul
+Valve = Ventil
+Decorative grating = Dekoratives Gitter
+Spigot outlet = Abflusshahn
+Airtight Pipe entry/exit = Luftdichter Rohreingang/ausgang
+Flow Sensor = Durchflusssensor
+Flow sensor (on) = Durchflusssensor (an)
+Expansion Tank (%s)... You hacker, you. = Ausgleichsbehaelter (%s)... Du Hacker, Du.
+empty = leer
+%d0%% full = %d0%% voll
+Fluid Storage Tank (%s) = Fluessigkeitentank
+Fountainhead = Fontaenenkopf
+
+### init.lua ###
+someone = jemand
+Sorry, %s owns that spot. = Tut mir leid, %s gehoert diese Stelle.
+Pipeworks loaded! = Pipeworks geladen!
+
+### item_transport.lua ###
+Filter = Filter
+Mese filter = Mesefilter
+
+### node_breaker.lua ###
+Node Breaker = Blockbrecher
+
+### pipes.lua ###
+Pipe segement %s... You hacker, you. = Rohr %s... Du Hacker, Du.
+Pipe segment = Rohr
+Pipe Segment (legacy) = Rohr (veraltet)
+
+### teleport_tube.lua ###
+Teleporter pneumatic tube segment = Teleportroehre
+Channel: = Kanal:
+On = An
+Sorry, channel '%s' is reserved for exclusive use by %s = Tut mir leid, der Kanal '%s' ist ausschliesslich fuer %s reserviert.
+Sorry, receiving from channel '%s' is reserved for %s = Tut mir leid, der Empfang auf Kanal '%s' ist fuer %s reserviert.
+Off = Aus
+
+### tubes.lua ###
+%s %s... You hacker, you. = %s %s... Du Hacker, Du.
+Pneumatic tube segment (legacy) = Luftdruckroehre (veraltet)
+Pneumatic tube segment = Luftdruckroehre
+Mese pneumatic tube segment = Mese-Luftdruckroehre
+On = An
+Mese pneumatic tube = Mese-Luftdruckroehre
+Off = Aus
+Detector tube segment on (you hacker you) = Sensorroehre an (Du Hacker, Du)
+Detector tube segment = Sensorroehre
+Conductor tube segment = Leitungsroehre
+Conductor tube segment on (you hacker you) = Leitungsroehre an (Du Hacker, Du)
+Accelerator pneumatic tube segment = Beschleunigerroehre
+Crossing tube segment = Kreuzungsroehre
+Sand pneumatic tube segment = Sand-Luftdruckroehre
+Mese sand pneumatic tube segment = Mese-Sand-Luftdruckroehre
+distance = Reichweite
+Mese sand pneumatic tube = Mese-Sand-Luftdruckroehre
+One way tube = Einwegroehre
