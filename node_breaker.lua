@@ -1,3 +1,10 @@
+-- Boilerplate to support localized strings if intllib mod is installed.
+local S
+if intllib then
+	S = intllib.Getter()
+else
+	S = function(s) return s end
+end
 
 --register aliases for when someone had technic installed, but then uninstalled it but not pipeworks
 minetest.register_alias("technic:nodebreaker_off", "pipeworks:nodebreaker_off")
@@ -203,7 +210,7 @@ local node_breaker_off = function(pos, node)
 end
 
 minetest.register_node("pipeworks:nodebreaker_off", {
-	description = "Node Breaker",
+	description = S("Node Breaker"),
 	tile_images = {"pipeworks_nodebreaker_top_off.png","pipeworks_nodebreaker_bottom_off.png","pipeworks_nodebreaker_side2_off.png","pipeworks_nodebreaker_side1_off.png",
 			"pipeworks_nodebreaker_back.png","pipeworks_nodebreaker_front_off.png"},
 	is_ground_content = true,
@@ -242,7 +249,7 @@ minetest.register_node("pipeworks:nodebreaker_off", {
 })
 
 minetest.register_node("pipeworks:nodebreaker_on", {
-	description = "Node Breaker",
+	description = S("Node Breaker"),
 	tile_images = {"pipeworks_nodebreaker_top_on.png","pipeworks_nodebreaker_bottom_on.png","pipeworks_nodebreaker_side2_on.png","pipeworks_nodebreaker_side1_on.png",
 			"pipeworks_nodebreaker_back.png","pipeworks_nodebreaker_front_on.png"},
 	mesecons= {effector={rules=pipeworks.rules_all,action_on=node_breaker_on, action_off=node_breaker_off}},
