@@ -1,0 +1,70 @@
+# Template
+
+### autocrafter.lua ###
+Autocrafter = 
+
+### crafts.lua ###
+Plastic sheet = 
+Unprocessed Plastic base = 
+
+### deployer.lua ###
+Deployer = 
+
+### devices.lua ###
+Pump/Intake Module = 
+Valve = 
+Decorative grating = 
+Spigot outlet = 
+Airtight Pipe entry/exit = 
+Flow Sensor = 
+Flow sensor (on) = 
+Expansion Tank (%s)... You hacker, you. = 
+empty = 
+%d0%% full = 
+Fluid Storage Tank (%s) = 
+Fountainhead = 
+
+### init.lua ###
+someone = 
+Sorry, %s owns that spot. = 
+Pipeworks loaded! = 
+
+### item_transport.lua ###
+Filter = 
+Mese filter = 
+
+### node_breaker.lua ###
+Node Breaker = 
+
+### pipes.lua ###
+Pipe segement %s... You hacker, you. = 
+Pipe segment= 
+Pipe Segment (legacy) = 
+
+### teleport_tube.lua ###
+Teleporter pneumatic tube segment = 
+Channel: = 
+On = 
+Sorry, channel '%s' is reserved for exclusive use by %s = 
+Sorry, receiving from channel '%s' is reserved for %s = 
+Off = 
+
+### tubes.lua ###
+%s %s... You hacker, you. = 
+Pneumatic tube segment (legacy) = 
+Pneumatic tube segment = 
+Mese pneumatic tube segment = 
+On = 
+Mese pneumatic tube = 
+Off = 
+Detector tube segment on (you hacker you) = 
+Detector tube segment = 
+Conductor tube segment = 
+Conductor tube segment on (you hacker you) = 
+Accelerator pneumatic tube segment = 
+Crossing tube segment = 
+Sand pneumatic tube segment = 
+Mese sand pneumatic tube segment = 
+distance = 
+Mese sand pneumatic tube = 
+One way tube = 
