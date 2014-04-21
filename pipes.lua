@@ -1,3 +1,11 @@
+-- Boilerplate to support localized strings if intllib mod is installed.
+local S
+if intllib then
+	S = intllib.Getter()
+else
+	S = function(s) return s end
+end
+
 -- This file supplies the steel pipes
 
 local REGISTER_COMPATIBILITY = true
@@ -48,12 +56,12 @@ for index, connects in ipairs(cconnects) do
 	end
 	
 	local pgroups = {snappy = 3, pipe = 1, not_in_creative_inventory = 1}
-	local pipedesc = "Pipe segement".." "..dump(connects).."... You hacker, you."
+	local pipedesc = S("Pipe segement %s... You hacker, you."):format(dump(connects))
 	local image = nil
 
 	if #connects == 0 then
 		pgroups = {snappy = 3, tube = 1}
-		pipedesc = "Pipe segment"
+		pipedesc = S("Pipe segment")
 		image = "pipeworks_pipe_inv.png"
 	end
 	
@@ -132,7 +140,7 @@ if REGISTER_COMPATIBILITY then
 		paramtype = "light",
 		inventory_image = "pipeworks_pipe_inv.png",
 		wield_image = "pipeworks_pipe_inv.png",
-		description = "Pipe Segment (legacy)",
+		description = S("Pipe Segment (legacy)"),
 		groups = {not_in_creative_inventory = 1, pipe_to_update = 1},
 		drop = "pipeworks:pipe_1_empty",
 		after_place_node = function(pos)
