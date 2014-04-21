@@ -1,3 +1,11 @@
+-- Boilerplate to support localized strings if intllib mod is installed.
+local S
+if intllib then
+	S = intllib.Getter()
+else
+	S = function(s) return s end
+end
+
 -- This file supplies the various kinds of pneumatic tubes
 
 pipeworks.tubenodes = {}
@@ -32,7 +40,7 @@ local register_one_tube = function(name, tname, dropname, desc, plain, noctrs, e
 	end
 
 	local tgroups = {snappy = 3, tube = 1, not_in_creative_inventory = 1}
-	local tubedesc = desc.." "..dump(connects).."... You hacker, you."
+	local tubedesc = S("%s %s... You hacker, you."):format(desc,dump(connects))
 	local iimg = plain[1]
 	local wscale = {x = 1, y = 1, z = 1}
 
@@ -53,7 +61,7 @@ local register_one_tube = function(name, tname, dropname, desc, plain, noctrs, e
 	table.insert(pipeworks.tubenodes, name.."_"..tname)
 	
 	local nodedef = {
-		description = tubedesc,
+		description = S(tubedesc),
 		drawtype = "nodebox",
 		tiles = outimgs,
 		sunlight_propagates = true,
@@ -181,7 +189,7 @@ pipeworks.register_tube = function(name, desc, plain, noctrs, ends, short, inv, 
 				wield_image = inv,
 				paramtype = "light",
 				sunlight_propagates = true,
-				description = "Pneumatic tube segment (legacy)",
+				description = S("Pneumatic tube segment (legacy)"),
 				on_construct = function(pos)
 					local meta = minetest.get_meta(pos)
 					meta:set_int("tubelike", 1)
@@ -302,14 +310,14 @@ if pipeworks.enable_mese_tube then
 							 "image[0,3;1,1;pipeworks_yellow.png]"..
 							 "image[0,4;1,1;pipeworks_blue.png]"..
 							 "image[0,5;1,1;pipeworks_red.png]"..
-							 "button[7,0;1,1;button1;On]"..
-							 "button[7,1;1,1;button2;On]"..
-							 "button[7,2;1,1;button3;On]"..
-							 "button[7,3;1,1;button4;On]"..
-							 "button[7,4;1,1;button5;On]"..
-							 "button[7,5;1,1;button6;On]"..
+							 "button[7,0;1,1;button1;"..S("On").."]"..
+							 "button[7,1;1,1;button2;"..S("On").."]"..
+							 "button[7,2;1,1;button3;"..S("On").."]"..
+							 "button[7,3;1,1;button4;"..S("On").."]"..
+							 "button[7,4;1,1;button5;"..S("On").."]"..
+							 "button[7,5;1,1;button6;"..S("On").."]"..
 							 "list[current_player;main;0,7;8,4;]")
-					 meta:set_string("infotext", "Mese pneumatic tube")
+					 meta:set_string("infotext", S("Mese pneumatic tube"))
 				 end,
 				 on_receive_fields = function(pos, formname, fields, sender)
 					 local meta = minetest.get_meta(pos)
@@ -336,9 +344,9 @@ if pipeworks.enable_mese_tube then
 					 for i = 1, 6 do
 						 local st = meta:get_int("l"..tostring(i).."s")
 						 if st == 0 then
-							 frm = frm.."button[7,"..tostring(i-1)..";1,1;button"..tostring(i)..";Off]"
+							 frm = frm.."button[7,"..tostring(i-1)..";1,1;button"..tostring(i)..";"..S("Off").."]"
 						 else
-							 frm = frm.."button[7,"..tostring(i-1)..";1,1;button"..tostring(i)..";On]"
+							 frm = frm.."button[7,"..tostring(i-1)..";1,1;button"..tostring(i)..";"..S("On").."]"
 						 end
 					 end
 					 frm = frm.."list[current_player;main;0,7;8,4;]"
@@ -531,8 +539,8 @@ if pipeworks.enable_mese_sand_tube then
 					 meta:set_int("dist", 0)
 					 meta:set_string("formspec",
 							 "size[2,1]"..
-								 "field[.5,.5;1.5,1;dist;distance;${dist}]")
-					 meta:set_string("infotext", "Mese sand pneumatic tube")
+								 "field[.5,.5;1.5,1;dist;"..S("distance")..";${dist}]")
+					 meta:set_string("infotext", S("Mese sand pneumatic tube"))
 				 end,
 				 on_receive_fields = function(pos,formname,fields,sender)
 					 local meta = minetest.env:get_meta(pos)
@@ -595,7 +603,7 @@ end
 
 if pipeworks.enable_one_way_tube then
 	minetest.register_node("pipeworks:one_way_tube", {
-		description = "One way tube",
+		description = S("One way tube"),
 		tiles = {"pipeworks_one_way_tube_top.png", "pipeworks_one_way_tube_top.png", "pipeworks_one_way_tube_output.png",
 			"pipeworks_one_way_tube_input.png", "pipeworks_one_way_tube_side.png", "pipeworks_one_way_tube_top.png"},
 		paramtype2 = "facedir",
