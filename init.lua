@@ -5,6 +5,13 @@
 --
 -- License: WTFPL
 --
+-- Boilerplate to support localized strings if intllib mod is installed.
+local S
+if intllib then
+	S = intllib.Getter()
+else
+	S = function(s) return s end
+end
 
 pipeworks = {}
 
@@ -124,5 +131,5 @@ if pipeworks.enable_node_breaker then dofile(pipeworks.modpath.."/node_breaker.l
 
 minetest.register_alias("pipeworks:pipe", "pipeworks:pipe_110000_empty")
 
-print("Pipeworks loaded!")
+print(S("Pipeworks loaded!"))
 
