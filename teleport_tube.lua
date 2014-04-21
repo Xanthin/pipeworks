@@ -1,3 +1,10 @@
+-- Boilerplate to support localized strings if intllib mod is installed.
+local S
+if intllib then
+	S = intllib.Getter()
+else
+	S = function(s) return s end
+end
 
 local filename=minetest.get_worldpath() .. "/teleport_tubes"
 
@@ -103,8 +110,8 @@ pipeworks.register_tube("pipeworks:teleport_tube","Teleporter pneumatic tube seg
 		meta:set_string("channel","")
 		meta:set_int("can_receive",1)
 		meta:set_string("formspec","size[9,1;]"..
-				"field[0,0.5;7,1;channel;Channel:;${channel}]"..
-				"button[8,0;1,1;bt;On]")
+				"field[0,0.5;7,1;channel;"..S("Channel:")..";${channel}]"..
+				"button[8,0;1,1;bt;"..S("On").."]")
 		add_tube_in_file(pos,"")
 	end,
 	on_receive_fields = function(pos,formname,fields,sender)
@@ -117,12 +124,12 @@ pipeworks.register_tube("pipeworks:teleport_tube","Teleporter pneumatic tube seg
 				
 				--channels starting with '[name]:' can only be used by the named player
 				if mode == ":" then
-					minetest.chat_send_player(sender:get_player_name(), "Sorry, channel '"..fields.channel.."' is reserved for exclusive use by "..name)
+					minetest.chat_send_player(sender:get_player_name(), S("Sorry, channel '%s' is reserved for exclusive use by %s"):format(fields.channel,name))
 					return
 				
 				--channels starting with '[name];' can be used by other players, but cannot be received from
 				elseif mode == ";" and (meta:get_int("can_receive") ~= 0) == (fields["bt"] == nil) then
-					minetest.chat_send_player(sender:get_player_name(), "Sorry, receiving from channel '"..fields.channel.."' is reserved for "..name)
+					minetest.chat_send_player(sender:get_player_name(), S("Sorry, receiving from channel '%s' is reserved for %s"):format(fields.channel,name))
 					return
 				end
 			end
@@ -137,12 +144,12 @@ pipeworks.register_tube("pipeworks:teleport_tube","Teleporter pneumatic tube seg
 			meta:set_int("can_receive",cr)
 			if cr==1 then
 				meta:set_string("formspec","size[9,1;]"..
-					"field[0,0.5;7,1;channel;Channel:;${channel}]"..
-					"button[8,0;1,1;bt;On]")
+					"field[0,0.5;7,1;channel;"..S("Channel:")..";${channel}]"..
+					"button[8,0;1,1;bt;"..S("On").."]")
 			else
 				meta:set_string("formspec","size[9,1;]"..
-					"field[0,0.5;7,1;channel;Channel:;${channel}]"..
-					"button[8,0;1,1;bt;Off]")
+					"field[0,0.5;7,1;channel;"..S("Channel:")..";${channel}]"..
+					"button[8,0;1,1;bt;"..S("Off").."]")
 			end
 		end
 		add_tube_in_file(pos,fields.channel, cr)
