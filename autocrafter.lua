@@ -1,3 +1,11 @@
+-- Boilerplate to support localized strings if intllib mod is installed.
+local S
+if intllib then
+	S = intllib.Getter()
+else
+	S = function(s) return s end
+end
+
 local autocrafterCache = {}  -- caches some recipe data to avoid to call the slow function minetest.get_craft_result() every second
 
 local function make_inventory_cache(invlist)
@@ -78,7 +86,7 @@ local function autocraft(inventory, pos)
 end
 
 minetest.register_node("pipeworks:autocrafter", {
-	description = "Autocrafter", 
+	description = S("Autocrafter"), 
 	drawtype = "normal", 
 	tiles = {"pipeworks_autocrafter.png"}, 
 	groups = {snappy = 3, tubedevice = 1, tubedevice_receiver = 1}, 
@@ -102,7 +110,7 @@ minetest.register_node("pipeworks:autocrafter", {
 				"list[current_name;src;0,3.5;8,3;]"..
 				"list[current_name;dst;4,0;4,3;]"..
 				"list[current_player;main;0,7;8,4;]")
-		meta:set_string("infotext", "Autocrafter")
+		meta:set_string("infotext", S("Autocrafter"))
 		local inv = meta:get_inventory()
 		inv:set_size("src", 3*8)
 		inv:set_size("recipe", 3*3)
