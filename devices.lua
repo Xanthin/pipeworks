@@ -1,3 +1,11 @@
+-- Boilerplate to support localized strings if intllib mod is installed.
+local S
+if intllib then
+	S = intllib.Getter()
+else
+	S = function(s) return s end
+end
+
 -- List of devices that should participate in the autoplace algorithm
 
 local pipereceptor_on = nil
@@ -55,7 +63,7 @@ for s in ipairs(states) do
 	pipeworks.add_node_box(pumpboxes, pipeworks.pipe_topstub)
 
 	minetest.register_node("pipeworks:pump_"..states[s], {
-		description = "Pump/Intake Module",
+		description = S("Pump/Intake Module"),
 		drawtype = "nodebox",
 		tiles = {
 			"pipeworks_pump_top.png",
@@ -112,7 +120,7 @@ for s in ipairs(states) do
 	local tilez = "pipeworks_valvebody_sides.png"
 
 	minetest.register_node("pipeworks:valve_"..states[s].."_empty", {
-		description = "Valve",
+		description = S("Valve"),
 		drawtype = "nodebox",
 		tiles = {
 			"pipeworks_valvebody_top_"..states[s]..".png",
@@ -165,7 +173,7 @@ pipeworks.add_node_box(valveboxes, pipeworks.pipe_rightstub)
 pipeworks.add_node_box(valveboxes, pipeworks.pipe_valvehandle_on)
 
 minetest.register_node("pipeworks:valve_on_loaded", {
-	description = "Valve",
+	description = S("Valve"),
 	drawtype = "nodebox",
 	tiles = {
 		"pipeworks_valvebody_top_on.png",
@@ -213,7 +221,7 @@ minetest.register_node("pipeworks:valve_on_loaded", {
 -- grating
 
 minetest.register_node("pipeworks:grating", {
-	description = "Decorative grating",
+	description = S("Decorative grating"),
 	tiles = {
 		"pipeworks_grating_top.png",
 		"pipeworks_grating_sides.png",
@@ -249,7 +257,7 @@ minetest.register_node("pipeworks:grating", {
 	pipeworks.add_node_box(spigotboxes_pouring, pipeworks.pipe_bendsphere)
 
 minetest.register_node("pipeworks:spigot", {
-	description = "Spigot outlet",
+	description = S("Spigot outlet"),
 	drawtype = "nodebox",
 	tiles = {
 		"pipeworks_spigot_sides.png",
@@ -282,7 +290,7 @@ minetest.register_node("pipeworks:spigot", {
 })
 
 minetest.register_node("pipeworks:spigot_pouring", {
-	description = "Spigot outlet",
+	description = S("Spigot outlet"),
 	drawtype = "nodebox",
 	tiles = {
 		"pipeworks_spigot_sides.png",
@@ -352,7 +360,7 @@ pipeworks.add_node_box(airtightboxes, pipeworks.pipe_backstub)
 pipeworks.add_node_box(airtightboxes, pipeworks.entry_panel)
 
 minetest.register_node("pipeworks:entry_panel_empty", {
-	description = "Airtight Pipe entry/exit",
+	description = S("Airtight Pipe entry/exit"),
 	drawtype = "nodebox",
 	tiles = {
 		"pipeworks_plain.png",
@@ -438,7 +446,7 @@ minetest.register_node("pipeworks:entry_panel_empty", {
 })
 
 minetest.register_node("pipeworks:entry_panel_loaded", {
-	description = "Airtight Pipe entry/exit",
+	description = S("Airtight Pipe entry/exit"),
 	drawtype = "nodebox",
 	tiles = {
 		"pipeworks_plain.png",
@@ -479,7 +487,7 @@ pipeworks.add_node_box(sensorboxes, pipeworks.pipe_sensorbody)
 pipeworks.add_node_box(sensorboxes, pipeworks.pipe_rightstub)
 
 minetest.register_node("pipeworks:flow_sensor_empty", {
-	description = "Flow Sensor",
+	description = S("Flow Sensor"),
 	drawtype = "nodebox",
 	tiles = {
 		"pipeworks_plain.png",
@@ -520,7 +528,7 @@ minetest.register_node("pipeworks:flow_sensor_empty", {
 })
 
 minetest.register_node("pipeworks:flow_sensor_loaded", {
-	description = "Flow sensor (on)",
+	description = S("Flow sensor (on)"),
 	drawtype = "nodebox",
 	tiles = {
 		"pipeworks_plain.png",
@@ -564,18 +572,18 @@ minetest.register_node("pipeworks:flow_sensor_loaded", {
 -- tanks
 
 for fill = 0, 10 do
-	local filldesc="empty"
+	local filldesc=S("empty")
 	local sgroups = {snappy=3, pipe=1, tankfill=fill+1}
 	local image = nil
 
 	if fill ~= 0 then
-		filldesc=fill.."0% full"
+		filldesc=S("%d0%% full"):format(fill)
 		sgroups = {snappy=3, pipe=1, tankfill=fill+1, not_in_creative_inventory=1}
 		image = "pipeworks_storage_tank_fittings.png"
 	end
 
 	minetest.register_node("pipeworks:expansion_tank_"..fill, {
-		description = "Expansion Tank ("..filldesc..")... You hacker, you.",
+		description = S("Expansion Tank (%s)... You hacker, you."):format(filldesc),
 		tiles = {
 			"pipeworks_storage_tank_fittings.png",
 			"pipeworks_storage_tank_fittings.png",
@@ -601,7 +609,7 @@ for fill = 0, 10 do
 	})
 
 	minetest.register_node("pipeworks:storage_tank_"..fill, {
-		description = "Fluid Storage Tank ("..filldesc..")",
+		description = S("Fluid Storage Tank (%s)"):format(filldesc),
 		tiles = {
 			"pipeworks_storage_tank_fittings.png",
 			"pipeworks_storage_tank_fittings.png",
@@ -629,7 +637,7 @@ end
 -- fountainhead
 
 minetest.register_node("pipeworks:fountainhead", {
-	description = "Fountainhead",
+	description = S("Fountainhead"),
 	drawtype = "nodebox",
 	tiles = {
 		"pipeworks_fountainhead_top.png",
@@ -663,7 +671,7 @@ minetest.register_node("pipeworks:fountainhead", {
 })
 
 minetest.register_node("pipeworks:fountainhead_pouring", {
-	description = "Fountainhead",
+	description = S("Fountainhead"),
 	drawtype = "nodebox",
 	tiles = {
 		"pipeworks_fountainhead_top.png",
