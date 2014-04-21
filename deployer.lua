@@ -1,3 +1,10 @@
+-- Boilerplate to support localized strings if intllib mod is installed.
+local S
+if intllib then
+	S = intllib.Getter()
+else
+	S = function(s) return s end
+end
 
 --register aliases for when someone had technic installed, but then uninstalled it but not pipeworks
 minetest.register_alias("technic:deployer_off", "pipeworks:deployer_off")
@@ -111,7 +118,7 @@ local deployer_off = function(pos, node)
 end
 
 minetest.register_node("pipeworks:deployer_off", {
-	description = "Deployer",
+	description = S("Deployer"),
 	tile_images = {"pipeworks_deployer_top.png","pipeworks_deployer_bottom.png","pipeworks_deployer_side2.png","pipeworks_deployer_side1.png",
 			"pipeworks_deployer_back.png","pipeworks_deployer_front_off.png"},
 	mesecons = {effector={rules=pipeworks.rules_all,action_on=deployer_on,action_off=deployer_off}},
@@ -135,10 +142,10 @@ minetest.register_node("pipeworks:deployer_off", {
 		local meta = minetest.get_meta(pos)
 		meta:set_string("formspec",
 				"invsize[8,9;]"..
-				"label[0,0;Deployer]"..
+				"label[0,0;"..S("Deployer").."]"..
 				"list[current_name;main;4,1;3,3;]"..
 				"list[current_player;main;0,5;8,4;]")
-		meta:set_string("infotext", "Deployer")
+		meta:set_string("infotext", S("Deployer"))
 		local inv = meta:get_inventory()
 		inv:set_size("main", 3*3)
 	end,
@@ -173,7 +180,7 @@ minetest.register_node("pipeworks:deployer_off", {
 })
 
 minetest.register_node("pipeworks:deployer_on", {
-	description = "Deployer",
+	description = S("Deployer"),
 	tile_images = {"pipeworks_deployer_top.png","pipeworks_deployer_bottom.png","pipeworks_deployer_side2.png","pipeworks_deployer_side1.png",
 			"pipeworks_deployer_back.png","pipeworks_deployer_front_on.png"},
 	mesecons = {effector={rules=pipeworks.rules_all,action_on=deployer_on,action_off=deployer_off}},
@@ -199,10 +206,10 @@ minetest.register_node("pipeworks:deployer_on", {
 		local meta = minetest.get_meta(pos)
 		meta:set_string("formspec",
 				"invsize[8,9;]"..
-				"label[0,0;Deployer]"..
+				"label[0,0;"..S("Deployer").."]"..
 				"list[current_name;main;4,1;3,3;]"..
 				"list[current_player;main;0,5;8,4;]")
-		meta:set_string("infotext", "Deployer")
+		meta:set_string("infotext", S("Deployer"))
 		local inv = meta:get_inventory()
 		inv:set_size("main", 3*3)
 	end,
