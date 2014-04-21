@@ -1,3 +1,11 @@
+-- Boilerplate to support localized strings if intllib mod is installed.
+local S
+if intllib then
+	S = intllib.Getter()
+else
+	S = function(s) return s end
+end
+
 dofile(pipeworks.modpath.."/compat.lua")
 
 --and an extra function for getting the right-facing vector
@@ -19,7 +27,7 @@ local function facedir_to_right_dir(facedir)
 end
 
 minetest.register_craftitem("pipeworks:filter", {
-	description = "Filter",
+	description = S("Filter"),
 	stack_max = 99,
 })
 
@@ -85,7 +93,7 @@ local function grabAndFire(frominv,frominvname,frompos,fromnode,sname,tube,idef,
 end
 
 minetest.register_node("pipeworks:filter", {
-	description = "Filter",
+	description = S("Filter"),
 	tiles = {"pipeworks_filter_top.png", "pipeworks_filter_top.png", "pipeworks_filter_output.png",
 		"pipeworks_filter_input.png", "pipeworks_filter_side.png", "pipeworks_filter_top.png"},
 	paramtype2 = "facedir",
@@ -98,7 +106,7 @@ minetest.register_node("pipeworks:filter", {
 				"invsize[8,6.5;]"..
 				"list[current_name;main;0,0;8,2;]"..
 				"list[current_player;main;0,2.5;8,4;]")
-		meta:set_string("infotext", "Filter")
+		meta:set_string("infotext", S("Filter"))
 		local inv = meta:get_inventory()
 		inv:set_size("main", 8*4)
 	end,
@@ -158,12 +166,12 @@ minetest.register_node("pipeworks:filter", {
 })
 
 minetest.register_craftitem("pipeworks:mese_filter", {
-	description = "Mese filter",
+	description = S("Mese filter"),
 	stack_max = 99,
 })
 
 minetest.register_node("pipeworks:mese_filter", {
-	description = "Mese filter",
+	description = S("Mese filter"),
 	tiles = {"pipeworks_mese_filter_top.png", "pipeworks_mese_filter_top.png", "pipeworks_mese_filter_output.png",
 		"pipeworks_mese_filter_input.png", "pipeworks_mese_filter_side.png", "pipeworks_mese_filter_top.png"},
 	paramtype2 = "facedir",
@@ -176,7 +184,7 @@ minetest.register_node("pipeworks:mese_filter", {
 				"invsize[8,6.5;]"..
 				"list[current_name;main;0,0;8,2;]"..
 				"list[current_player;main;0,2.5;8,4;]")
-		meta:set_string("infotext", "Mese filter")
+		meta:set_string("infotext", S("Mese filter"))
 		local inv = meta:get_inventory()
 		inv:set_size("main", 8*4)
 	end,
